@@ -1,0 +1,60 @@
+.container-fluid{
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+.menu{
+    background-color:rgba(255, 255, 255, 0.9);
+    border: 2px solid #333;
+    z-index: 2;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    min-height:45%;
+    min-width:45%;
+}
+.nav-links{
+    width:400px;
+    font-size:26px;
+    padding:10px;
+    position: relative;
+    display:flex;
+    justify-content: center;
+    margin:auto;
+}
+.nav-links a{
+    display:block;
+    min-width:20%;
+    margin: auto;
+    text-align: center;
+}
+.return-link{
+    position: absolute;
+    bottom:5px;
+    left:50%;
+    transform: translate(-50%);
+    display: flex;
+    align-items: center;
+}
+.button-container{
+    width:55%;
+}
+.button-container button{
+    height:25px;
+    display: flex;
+    align-content: center;
+    line-height: 20px;
+}
+.columns{
+    display: flex;
+    align-items: center;
+}
+.setting-row{
+    background-color:white;
+    padding:10px;
+    border:1px solid lightgray;
+}
+.mat-form-field{
+    width:100%;
+}

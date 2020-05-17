@@ -1,0 +1,70 @@
+<div class="container-fluid" [style.backgroundImage]="'url(' + trip.imageURL + ')'" *ngIf="loading === false">
+    
+    <div class="menu">
+        <h1 class="text-center mt-3 fun-text">{{ trip.name }}</h1>
+        <div class="button-container mx-auto d-block mt-5">
+            <div class="row setting-row">
+                <div class="col-5 columns">
+                    <b>Date</b>
+                </div>
+                <div class="col-5 columns">
+                    {{ trip.tripDate | date }}
+                </div>
+                <div class="col-2 columns">
+                    <mat-icon (click)="showEditDialog(editDialog, 'date')">edit</mat-icon>
+                </div>
+            </div>
+            <div class="row mt-2 setting-row">
+                <div class="col-5 columns">
+                    <b>Coordinator</b>
+                </div>
+                <div class="col-5 columns">
+                    {{ trip.coordinatorName ? trip.coordinatorName : 'N/A' }}
+                </div>
+                <div class="col-2 columns">
+                    <mat-icon (click)="showEditDialog(editDialog, 'coorindator')">edit</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div class="d-block mx-auto mt-1 setting-row" style="Width:300px;" *ngIf="unsavedChanges">You have unsaved changes. 
+            <button clas="ml-2" (click)="saveChanges()"  mat-raised-button color="primary">Save</button>
+        </div>
+
+        <div style="width:100%;" class="text-center mt-5">
+            <div class="nav-links">
+                <a routerLink="groups">Groups</a>
+                <span>|</span>
+                <a routerLink="pricing">Pricing</a>
+                <span>|</span>
+                <a routerLink="players">Players</a>
+            </div>
+        </div>
+        <a routerLink="/list">
+            <div class="return-link">
+                <mat-icon>arrow_back</mat-icon><span>Back to List</span>
+            </div>
+        </a>
+
+    </div>
+
+</div>
+
+<ng-template let-data #editDialog>
+    <h3 mat-dialog-title>{{ data.title }}: <span class="fun-text">{{ data.trip.name }}</span></h3>
+    <mat-dialog-content>
+        <mat-form-field appearance="outline" *ngIf="data.type === 'date'">
+            <mat-label>Date</mat-label>
+            <input matInput [(ngModel)]="data.trip.tripDate"  [matDatepicker]="picker" (click)="picker.open()">
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field *ngIf="data.type !== 'date'" appearance="outline">
+            <mat-label>Coorindator</mat-label>
+            <mat-select [(ngModel)]="data.trip.coordinator" (selectionChange)="onCoordiantorChange()">
+                <mat-option [value]="p.id" *ngFor="let p of players">{{ p.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="done()">Done</button>
+    </mat-dialog-actions>
+</ng-template>

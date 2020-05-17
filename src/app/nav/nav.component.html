@@ -1,0 +1,11 @@
+<mat-toolbar>
+    <div class="name-container">
+        <span>Golf Coordinator App</span>
+        <span class="demo-title">A Haymaker Coding Demo</span>
+    </div>
+    <span style="flex:1"></span>
+    <mat-icon *ngIf="authService.getLoggedIn() === true" [matMenuTriggerFor]="userMenu">account_circle</mat-icon>
+    <mat-menu #userMenu>
+        <button (click)="logout()" mat-menu-item>Logout</button>
+    </mat-menu>
+</mat-toolbar>
